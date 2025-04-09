@@ -1,0 +1,21 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Bump version and create tag
+      run: |
+        VERSION="v$(date +'%Y.%m.%d.%H%M%S')"
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
+        git tag $VERSION
+        git push origin $VERSION
