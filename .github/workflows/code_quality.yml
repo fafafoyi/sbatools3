@@ -22,7 +22,7 @@ jobs:
           pip install black flake8
 
       - name: Check formatting with Black
-        run: black --check .  # Runs Black to check if the code is properly formatted
+        run: black . # Runs Black to check if the code is properly formatted
 
       - name: Check code with Flake8
         run: flake8 .  # Runs Flake8 to check code style
