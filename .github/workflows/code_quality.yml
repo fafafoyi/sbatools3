@@ -1,0 +1,28 @@
+name: Code Quality
+
+on:
+  pull_request:
+    branches: [ develop ]  # Only run on PRs to 'develop' branch
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install black flake8
+
+      - name: Check formatting with Black
+        run: black --check .  # Runs Black to check if the code is properly formatted
+
+      - name: Check code with Flake8
+        run: flake8 .  # Runs Flake8 to check code style
